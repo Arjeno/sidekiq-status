@@ -17,7 +17,7 @@ module Sidekiq::Status::Storage
         conn.hmset  key(id), 'update_time', Time.now.to_i, *(status_updates.to_a.flatten(1))
         conn.expire key(id), (expiration || Sidekiq::Status::DEFAULT_EXPIRY)
         conn.publish "status_updates", id
-      end[0]
+      end
     end
   end
 
